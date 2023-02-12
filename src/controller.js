@@ -5,11 +5,11 @@ const upload = async (req, res) => {
     const {file} = req; //Recibimos el archivo enviado por req
     try{
         const csv = await csvToJson().fromFile(file.path); // Transformamos el csv a json para poder cargarlo en la bd.   
-        await Records.insertMany(csv, {ordered: false, writeConcern:{w:0}}) /* Insertamos los registros en la bd. 
+        await Records.insertMany(csv, {ordered:false, writeConcern:{w:0}}) /* Insertamos los registros en la bd. 
                                                                             Seteamos ordered en false y writeConcern en 0 para mejorar el rendimiento*/
-        res.send("Upload completed")
-    } catch (error) {
-        res.send("Upload failed")
+        return res.status(200).json({message: "Upload completed"});
+    } catch (err) {
+        return res.status(500).json(err);
     }
 }
 
