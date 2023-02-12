@@ -9,7 +9,7 @@ const upload = async (req, res) => {
                                                                             Seteamos ordered en false y writeConcern en 0 para mejorar el rendimiento*/
         res.send("Upload completed")
     } catch (error) {
-        res.send("Upload failed", error)
+        res.send("Upload failed")
     }
 }
 
